@@ -1,0 +1,10 @@
+<h1><%= @club.name %></h1>
+<table>
+	<tr>
+		<td><b>Bezeichnung</b></td>
+		<td><%=  @club.name%></td>
+	</tr>
+</table>
+<p>
+	<%= link_to "Alle Vereine", club_index_path %> <%= link_to "Bearbeiten", edit_club_path(@club.id) %> <%= link_to "Löschen", club_path(@club.id), method: :delete, data: { confirm: "Wirklich löschen?" } %>
+</p>

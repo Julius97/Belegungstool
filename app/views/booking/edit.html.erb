@@ -1,0 +1,41 @@
+<h1><%= "Buchungs-Nr. " + @booking.id.to_s + " von " + @booking.user.name + " bearbeiten" %></h1>
+<%= form_tag booking_path, method: :put do %>
+	<%= hidden_field_tag "booking_id", @booking.id %>
+	<% if @current_user.admin_permissions %>
+		<%= label_tag "user_id", "Auftraggeber" %>
+		<%= select_tag "user_id", options_from_collection_for_select(User.all.order(:last_name,:first_name), "id", "name", @booking.user.id) %><br /><br />
+	<% else %>
+		<table>
+			<tr>
+				<td>Auftraggeber&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td><%= @current_user.name %></td>
+			</tr>
+		</table>
+		<%= hidden_field_tag "user_id", @current_user.id %><br />
+	<% end %>
+	<%= label_tag "court_id", "Platz" %>
+	<%= select_tag "court_id", options_from_collection_for_select(Court.where(:opened => true).order(:name), "id", "name", @booking.court.id) %><br /><br />
+	<fieldset>
+		<legend>Spielzeit</legend>
+		<%= label_tag "at_day", "Datum" %>
+		<%= number_field_tag "at_day", @booking.from_date.day, min:Date.today.day,max:31,step:1 %>.<%= number_field_tag "at_month", @booking.from_date.month, min:Date.today.month,max:12,step:1 %>.<%= number_field_tag "at_year", @booking.from_date.year, min:Date.today.year,max:3000,step:1 %><br /><br />
+		<%= label_tag "at_hour", "Zeit" %>
+		<%= number_field_tag "at_hour", @booking.from_date.hour, min:0,max:23,step:1 %>:
+		<% if @booking.from_date.min == 0 %>
+			<%= select_tag "at_min", "<option value='0' selected>00</option><option value='30'>30</option>".html_safe %> Uhr bis
+		<% else %>
+			<%= select_tag "at_min", "<option value='0'>00</option><option value='30' selected>30</option>".html_safe %> Uhr bis
+		<% end %>
+		<%= number_field_tag "to_hour", @booking.to_date.hour, min:0,max:23,step:1 %>:
+		<% if @booking.from_date.min == 0 %>
+			<%= select_tag "to_min", "<option value='0' selected>00</option><option value='30'>30</option>".html_safe %> Uhr<br /><br />
+		<% else %>
+			<%= select_tag "to_min", "<option value='0'>00</option><option value='30' selected>30</option>".html_safe %> Uhr<br /><br />
+		<% end %>
+	</fieldset>
+	<br />
+	<%= submit_tag "Buchung bearbeiten" %>
+<% end %>
+<p>
+	<%= link_to "Alle Buchungen", booking_index_path %>
+</p>

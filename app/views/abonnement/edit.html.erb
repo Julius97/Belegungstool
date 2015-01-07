@@ -1,0 +1,56 @@
+<h1>Abonnement bearbeiten</h1>
+<%= form_tag abonnement_path, method: :put do %>
+	<%= hidden_field_tag "abonnement_id", @abonnement.id %>
+	<% if @current_user.admin_permissions %>
+		<%= label_tag "user_id", "Inhaber" %>
+		<%= select_tag "user_id", options_from_collection_for_select(User.all.order(:last_name,:first_name), "id", "name",@abonnement.user.id) %><br /><br />
+	<% else %>
+		<table>
+			<tr>
+				<td>Inhaber&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td><%= @current_user.name %></td>
+			</tr>
+		</table>
+		<%= hidden_field_tag "user_id", @current_user.id %><br />
+	<% end %>
+	<%= label_tag "court_id", "Platz" %>
+	<%= select_tag "court_id", options_from_collection_for_select(Court.where(:opened => true).order(:name), "id", "name",@abonnement.court.id) %><br /><br />
+	<fieldset>	
+		<legend>Laufzeit</legend>
+		<%= label_tag "at_day", "Vom" %>
+		<%= number_field_tag "at_day", @abonnement.from_date.day, min:1,max:31,step:1 %>.<%= number_field_tag "at_month", @abonnement.from_date.month, min:1,max:12,step:1 %>.<%= number_field_tag "at_year", @abonnement.from_date.year, min:2000,max:3000,step:1 %>
+		<%= label_tag "to_day", "bis" %>
+		<%= number_field_tag "to_day", @abonnement.to_date.day, min:1,max:31,step:1 %>.<%= number_field_tag "to_month", @abonnement.to_date.month, min:1,max:12,step:1 %>.<%= number_field_tag "to_year", @abonnement.to_date.year, min:2000,max:3000,step:1 %>
+		<br /><br />
+	</fieldset>
+	<fieldset>	
+		<legend>Spielzeit</legend>
+		<%= label_tag "at_wday", "Wochentag" %>
+		<select name="at_wday">
+		<% @wday_array.each_with_index do |wday,i| %>
+			<% if @abonnement.playing_day == i %>
+				<option value="<%= i %>" selected><%= wday %></option>
+			<% else %>
+				<option value="<%= i %>"><%= wday %></option>
+			<% end %>
+		<% end %>
+		</select>
+		<br /><br />
+		<%= label_tag "at_hour", "Zeit" %>
+		<%= number_field_tag "at_hour", @abonnement.playing_time_starts.hour, min:0,max:23,step:1 %>:
+		<% if @abonnement.playing_time_starts.min == 0 %>
+			<%= select_tag "at_min", "<option value='0' selected>00</option><option value='30'>30</option>".html_safe %> Uhr bis
+		<% else %>
+			<%= select_tag "at_min", "<option value='0'>00</option><option value='30' selected>30</option>".html_safe %> Uhr bis
+		<% end %>
+		<%= number_field_tag "to_hour", @abonnement.playing_time_ends.hour, min:0,max:23,step:1 %>:
+		<% if @abonnement.playing_time_ends.min == 0 %>
+			<%= select_tag "to_min", "<option value='0' selected>00</option><option value='30'>30</option>".html_safe %> Uhr<br />
+		<% else %>
+			<%= select_tag "to_min", "<option value='0'>00</option><option value='30' selected>30</option>".html_safe %> Uhr<br />
+		<% end %>
+	</fieldset>
+	<br />
+	<%= submit_tag "Abonnement bearbeiten" %>
+<% end %>
+<%= link_to "Alle Abonnements", abonnement_index_path %> <%= link_to "Anzeigen", abonnement_path(@abonnement.id) %> <%= link_to "Löschen", abonnement_path(@abonnement.id), method: :delete, data: { confirm: "Wirklich löschen?" } %>

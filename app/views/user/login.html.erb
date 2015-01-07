@@ -1,0 +1,11 @@
+<h1>Login</h1>
+<%= form_tag login_path, method: :post do %>
+	<%= label_tag "mail", "Mailadresse" %><br />
+	<%= text_field_tag "mail" %><br /><br />
+	<%= label_tag "password", "Passwort" %><br />
+	<%= password_field_tag "password" %><br /><br />
+	<%= submit_tag "Login" %>
+<% end %>
+<p>
+	<%= link_to "Startseite", home_path %>
+</p>

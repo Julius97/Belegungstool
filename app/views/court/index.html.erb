@@ -1,0 +1,20 @@
+<h1>Courts</h1>
+<p>
+	<%= link_to "Neuen Court anlegen", new_court_path %>
+</p>
+<table>
+	<% @courts.each do |court| %>
+		<tr>
+			<td>
+				<% if court.opened %>
+					<%= court.name + " geöffnet" %>
+				<% else %>
+					<%= court.name + " nicht geöffnet" %>
+				<% end %>
+			</td>
+			<td>
+				<%= link_to "Anzeigen", court_path(court.id) %> | <%= link_to "Bearbeiten", edit_court_path(court.id) %> | <%= link_to "Löschen", court_path(court.id), method: :delete, data: { confirm: "Wirklich löschen?" } %>
+			</td>
+		</tr>
+	<% end %>
+</table>

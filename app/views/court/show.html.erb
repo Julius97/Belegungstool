@@ -1,0 +1,14 @@
+<h1><%= @court.name %></h1>
+<table>
+	<tr>
+		<td><b>Bezeichnung</b></td>
+		<td><%=  @court.name%></td>
+	</tr>
+	<tr>
+		<td><b>Zurzeit geöffnet</b></td>
+		<td><%= @court.opened ? "Ja" : "Nein" %></td>
+	</tr>
+</table>
+<p>
+	<%= link_to "Alle Courts", court_index_path %> <%= link_to "Bearbeiten", edit_court_path(@court.id) %> <%= link_to "Löschen", court_path(@court.id), method: :delete, data: { confirm: "Wirklich löschen?" } %>
+</p>

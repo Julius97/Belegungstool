@@ -1,0 +1,17 @@
+<h1>Benutzer hinzufügen</h1>
+<%= form_tag user_index_path, method: :post do %>
+	<%= label_tag "first_name", "Vorname" %><br />
+	<%= text_field_tag "first_name" %><br /><br />
+	<%= label_tag "last_name", "Nachname" %><br />
+	<%= text_field_tag "last_name" %><br /><br />
+	<%= label_tag "mail", "Mailadresse" %><br />
+	<%= text_field_tag "mail" %><br /><br />
+	<%= label_tag "admin_permissions", "Adminrechte" %><br />
+	<%= check_box_tag "admin_permissions", 1 %><br />
+	<%= label_tag "club_id", "Verein" %>
+	<%= select_tag "club_id", options_from_collection_for_select(Club.all.order(:name), "id", "name"), prompt: "Bitte auswählen" %><br /><br />
+	<%= submit_tag "Neuen Benutzer anlegen" %>
+<% end %>
+<p>
+	<%= link_to "Alle Benutzer", user_index_path %>
+</p>

@@ -1,0 +1,321 @@
+/*
+ *= require_tree .
+ *= require_self
+ */
+
+html{
+	font-family: Arial;
+	line-height: 1.5;
+}
+h1{
+	font-size: 32px;
+	font-weight: bold;
+}
+h2{
+	font-size: 24px;
+	font-weight: bold;
+}
+h3{
+	font-size: 18px;
+	font-weight: bold;
+}
+p{
+	margin: 20px 0px;
+	font-size: 16px;
+}
+a{
+	color: #837E7C;
+	text-decoration: none;
+	font-size: 16px;
+}
+a:hover{
+	color: black;
+}
+table td, table th{
+	padding: 10px;
+}
+table td:first-child, table th:first-child{
+	padding: 0px;
+}
+.availability_plan{
+	width: 100%;
+}
+.availability_plan .heading_cell_style{
+	background: #837E7C;
+	font-weight: bold;
+}
+.availability_plan .free_cell_style_1{
+	background: #00688B;
+}
+.availability_plan .free_cell_style_2{
+	background: #33A1C9;
+}
+.availability_plan .booked_cell_style{
+	background: #837E7C;
+}
+.availability_plan td,.availability_plan th{
+	width: 30%;
+	height: 50px;
+	text-align: center;
+	vertical-align: middle;
+}
+.availability_plan td{
+	height: 25px;
+}
+.availability_plan .time_cell_style{
+	width: 10%;
+	height: 50px;
+	text-align: center;
+	vertical-align: middle;
+}
+#webseite{
+	width: 90%;
+	margin: 0 auto;
+	margin-top: 70px;
+	margin-bottom: 70px;
+}
+#menue{
+	z-index: 2;
+	width: 100%;
+	height: 50px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background: #45484d; /* Old browsers */
+	background: -moz-linear-gradient(top, #45484d 0%, #000000 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#45484d), color-stop(100%,#000000)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #45484d 0%,#000000 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #45484d 0%,#000000 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #45484d 0%,#000000 100%); /* IE10+ */
+	background: linear-gradient(to bottom, #45484d 0%,#000000 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+	box-shadow: 0px 0px 2px 2px gray;
+}
+#menue ul{
+	padding: 0;
+	margin: 0;
+	margin-right: 50px;
+	float: right;
+}
+#menue ul li{
+	list-style: none;
+	float: left;
+	margin: 0;
+	padding: 0;
+	height: 50px;
+	width: 170px;
+	border-left: 1px solid #45484d;
+}
+#menue ul li:last-child{
+	border-right: 1px solid #45484d;
+}
+#menue ul li a, #menue ul li span{
+	display: block;
+	width: 100%;
+	height:40px;
+	padding-top: 10px;
+	color: white;
+	font-size: 20px;
+	font-weight: normal;
+	text-decoration: none;
+	text-align: center;
+	cursor: pointer;
+}
+#menue ul li:hover{
+	background: #0e0e0e;
+}
+#menue ul li:hover ul li a{
+	color: white;
+}
+#menue ul li ul{
+	display: none;
+	position: absolute;
+	border-radius: 0px 0px 5px 5px;
+	box-shadow: 0px 4px 5px 0.1px gray;
+}
+#menue ul li:hover ul{
+	display: block;
+}
+#menue ul li:hover ul li ul{
+	display: none;
+}
+#menue ul li ul:hover{
+	display: block;
+}
+#menue ul li ul:hover li ul{
+	display: none;
+}
+#menue ul li ul li{
+	background: #45484d; /* Old browsers */
+	background: -moz-linear-gradient(top, #45484d 0%, #000000 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#45484d), color-stop(100%,#000000)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #45484d 0%,#000000 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #45484d 0%,#000000 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #45484d 0%,#000000 100%); /* IE10+ */
+	background: linear-gradient(to bottom, #45484d 0%,#000000 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+	list-style: none;
+	min-width: 170px;
+	width: auto;
+	height: 50px;
+	display: block;
+	float: none;
+}
+#menue ul li ul li:last-child{
+	border-radius: 0px 0px 5px 5px;
+}
+#menue ul li ul li a{
+	display: block;
+	height: 30px;
+	text-align: left;
+	padding: 10px 20px;
+	color: white;
+}
+#menue ul li ul li:hover{
+	background: #0e0e0e;
+}
+#menue ul li ul li ul{
+	display: none;
+	position: absolute;
+	left: 170px;
+	margin-top: -50px;
+	border-radius: 0px 5px 5px 0px;
+	box-shadow: 3px 4px 5px 0.1px gray;
+}
+#menue ul li ul li:hover ul{
+	display: block;
+}
+#menue ul li ul li ul:hover{
+	display: block;
+}
+#menue ul li ul li ul li{
+	background: #45484d; /* Old browsers */
+	background: -moz-linear-gradient(top, #45484d 0%, #000000 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#45484d), color-stop(100%,#000000)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #45484d 0%,#000000 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #45484d 0%,#000000 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #45484d 0%,#000000 100%); /* IE10+ */
+	background: linear-gradient(to bottom, #45484d 0%,#000000 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+	list-style: none;
+	min-width: 100px;
+	height: 50px;
+	display: block;
+	float: none;
+}
+#menue ul li ul li ul li:first-child{
+	border-radius: 0px 5px 0px 0px;
+}
+#menue ul li ul li ul li:last-child{
+	border-radius: 0px 0px 5px 0px;
+}
+#menue ul li ul li ul li a{
+	display: block;
+	text-align: left;
+	padding: 10px 20px;
+	display: block;
+	color: white;
+	height: 30px;
+}
+#menue ul li ul li:hover ul li a{
+	color: white;
+}
+#menue ul li ul li ul li:hover{
+	background: #0e0e0e;
+}
+#menue ul li #login_popup{
+	position: fixed;
+	top: 50px;
+	right: 50px;
+	display: none;
+	background: #33A1C9;
+	padding: 10px 20px;
+	border-radius: 0px 0px 10px 10px;
+	display: none;
+	max-width: 500px;
+	box-shadow: 0px 4px 2px 0.1px gray;
+}
+#menue ul li #login_popup h3{
+	margin: 5px;
+}
+#menue ul li #login_popup p{
+	margin: 5px;
+}
+#menue ul li #login_popup p a{
+	margin-right: 10px;
+	text-align: left;
+	display: inline;
+}
+#menue ul li #login_popup h3 a:hover, #menue ul li #login_popup p a:hover{
+	color: black;
+}
+#menue ul li:hover #login_popup{
+	display: block;
+}
+#menue ul li #login_popup:hover{
+	display: block;
+}
+#footer {
+	z-index: 2;
+	width: 100%;
+	height: 50px;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	background: #45484d; /* Old browsers */
+	background: -moz-linear-gradient(top, #45484d 0%, #000000 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#45484d), color-stop(100%,#000000)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #45484d 0%,#000000 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #45484d 0%,#000000 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #45484d 0%,#000000 100%); /* IE10+ */
+	background: linear-gradient(to bottom, #45484d 0%,#000000 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+	box-shadow: 0px 0px 2px 2px gray;
+}
+#footer ul{
+	padding: 0;
+	margin: 0;
+	margin-left: 50px;
+	float: left;
+}
+#footer ul li{
+	list-style: none;
+	float: left;
+	margin: 0;
+	padding: 0;
+	height: 50px;
+	width: 170px;
+	border-left: 1px solid #45484d;
+}
+#footer ul li a{
+	display: block;
+	width: 100%;
+	height:40px;
+	padding-top: 10px;
+	color: white;
+	font-size: 20px;
+	font-weight: normal;
+	text-decoration: none;
+	text-align: center;
+	cursor: pointer;
+}
+#footer ul li:hover{
+	background: #0e0e0e;
+}
+#footer ul li:last-child{
+	border-right: 1px solid #45484d;
+}
+#footer ul li #prices_popup{
+	position: fixed;
+	bottom: 50px;
+	left: 50px;
+	display: none;
+	background: #33A1C9;
+	padding: 10px 20px;
+	border-radius: 10px 10px 0px 0px;
+	display: none;
+	box-shadow: 2px -4px 2px 0.1px gray;
+}
+#footer ul li:hover #prices_popup{
+	display: block;
+}

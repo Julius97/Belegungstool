@@ -1,0 +1,50 @@
+<h1>Buchungen</h1>
+<p>
+	<%= link_to "Neue Buchung anlegen", new_booking_path %>
+</p>
+<h2>Aktuelle Buchungen</h2>
+<table>
+	<thead>
+		<tr>
+			<th>Buchungs-Nr.</th><th>Auftraggeber</th><th>Platz</th><th>Spielzeit</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @actual_bookings.each do |booking| %>
+			<% if booking != nil %>
+				<tr>
+					<td><%= booking.user.name %></td>
+					<td><%= booking.court.name %></td>
+					<td><%= booking.from_date.strftime("%d.%m.%Y - %H:%M Uhr bis ") %><%= booking.to_date.strftime("%H:%M Uhr") %></td>
+					<td>
+						<%= link_to "Anzeigen", booking_path(booking.id) %> | <%= link_to "Bearbeiten", edit_booking_path(booking.id) %> | <%= link_to "Löschen", booking_path(booking.id), method: :delete, data: { confirm: "Wirklich löschen?" } %>
+					</td>
+				</tr>
+			<% end %>
+		<% end %>
+	</tbody>
+</table>
+<% if @current_user.admin_permissions %>
+	<h2>Archivierte Buchungen</h2>
+	<table>
+		<thead>
+			<tr>
+				<th>Buchungs-Nr.</th><th>Auftraggeber</th><th>Platz</th><th>Spielzeit</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @archived_bookings.each do |booking| %>
+				<% if booking != nil %>
+					<tr>
+						<td><%= booking.user.name %></td>
+						<td><%= booking.court.name %></td>
+						<td><%= booking.from_date.strftime("%d.%m.%Y - %H:%M Uhr bis ") %><%= booking.to_date.strftime("%H:%M Uhr") %></td>
+						<td>
+							<%= link_to "Anzeigen", booking_path(booking.id) %>
+						</td>
+					</tr>
+				<% end %>
+			<% end %>
+		</tbody>
+	</table>
+<% end %>

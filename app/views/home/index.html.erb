@@ -1,0 +1,72 @@
+<h1>Belegungsplantool</h1>
+<p>
+	<%= form_tag home_index_path, method: :post do %>
+		<fieldset>
+			<legend>Spielzeit</legend>
+			<%= label_tag "at_day", "Datum" %>
+			<%= number_field_tag "at_day", Date.today.day, min:1,max:31,step:1 %>.<%= number_field_tag "at_month", Date.today.month, min:1,max:12,step:1 %>.<%= number_field_tag "at_year", Date.today.year, min:2000,max:3000,step:1 %><br /><br />
+		</fieldset>
+		<br />
+	<%= submit_tag "Belegungsplan anfordern" %>
+	<% end %>
+</p>
+<p>
+	<h2>Buchungstag <%= @booking_date.strftime("%d.%m.%Y") %></h2>
+	<h3>Abonnenten</h3>
+	<p>
+		<% @abonnements.each do |abonnement| %>
+			<%= "Abonnement-Nr. " + abonnement.id.to_s + " - " + abonnement.user.name + " auf Platz " + abonnement.court.name + " von " + abonnement.playing_time_starts.strftime("%H:%M Uhr bis ") + abonnement.playing_time_ends.strftime("%H:%M Uhr") %><br />
+		<% end %>
+	</p>
+	<h3>Buchungen</h3>
+	<p>
+		<% @bookings.each do |booking| %>
+			<%= "Buchungs-Nr. " + booking.id.to_s + " - " + booking.user.name + " auf Platz " + booking.court.name + " von " + booking.from_date.strftime("%H:%M Uhr bis ") + booking.to_date.strftime("%H:%M Uhr") %><br />
+		<% end %>
+	</p>
+	<h3>Belegungsplan</h3>
+	<table cellspacing="1" class="availability_plan">
+		<thead>
+			<tr>
+				<th class="heading_cell_style" colspan="<%= @courts.count+1 %>"><%= @booking_date.strftime("%d.%m.%Y") %><th>
+			</tr>
+			<tr>
+				<th class="time_cell_style">Zeit</th>
+				<% @courts.each do |court| %>
+					<th><%= court.name %></th>
+				<% end %>
+			</tr>
+		</thead>
+		<% i = 0 %>
+		<% 24.times do %>
+			<% min = 0 %>
+			<% 2.times do %>
+				<tr>
+					<% if min == 0 %>
+						<td class="time_cell_style"><%= i.to_s + ":"+ min.to_s + "0 - " + i.to_s + ":" + (min+30).to_s  %></td>
+					<% else %>
+						<% if min == 60 %>
+							<% min = 0 %>
+						<% end %>
+						<td class="time_cell_style"><%= i.to_s + ":"+ min.to_s + " - " + (i+1).to_s + ":00"  %></td>
+					<% end %>
+					<% k = 0 %>
+					<% 3.times do %>
+						<% if @bookings_sorted_by_hours[i][k] == "Frei" %>
+							<% if i%2 == 0 %>
+								<td class="free_cell_style_1"><%= @bookings_sorted_by_hours[i][k] %></td>
+							<% else %>
+								<td class="free_cell_style_2"><%= @bookings_sorted_by_hours[i][k] %></td>
+							<% end %>
+						<% else %>
+							<td class="booked_cell_style"><%= @bookings_sorted_by_hours[i][k] %></td>
+						<% end %>
+						<% k += 1 %>
+					<% end %>
+				</tr>
+				<% min += 30 %>
+			<% end %>
+			<% i += 1 %>
+		<% end %>
+	</table>
+</p>

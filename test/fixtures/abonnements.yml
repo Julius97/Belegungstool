@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  court_id: 1
+  from_date: 2015-01-01
+  to_date: 2015-01-01
+
+two:
+  user_id: 1
+  court_id: 1
+  from_date: 2015-01-01
+  to_date: 2015-01-01

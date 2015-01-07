@@ -1,0 +1,23 @@
+<h1>Registrierte Benutzer</h1>
+<p>
+	<%= link_to "Neuen Benutzer anlegen", new_user_path %>
+</p>
+<table>
+	<thead>
+		<tr>
+			<th>Vorname</th><th>Nachname</th><th>Mailadresse</th><th>Verein</th><th>Admin</th>
+		</tr>
+	</thead>
+	<% @users.each do |user| %>
+		<tr>
+			<td><%= user.first_name %></td>
+			<td><%= user.last_name %></td>
+			<td><%= user.mail_address %></td>
+			<td><%= user.club.name %></td>
+			<td><%= user.admin_permissions ? "Ja" : "Nein" %></td>
+			<td>
+				<%= link_to "Anzeigen", user_path(user.id) %> | <%= link_to "Bearbeiten", edit_user_path(user.id) %> | <%= link_to "Löschen", user_path(user.id), method: :delete, data: { confirm: "Wirklich löschen?" } %>
+			</td>
+		</tr>
+	<% end %>
+</table>

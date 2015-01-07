@@ -1,0 +1,16 @@
+<h1><%= @court.name %> bearbeiten</h1>
+<%= form_tag court_path, method: :put do %>
+	<%= hidden_field_tag "court_id", @court.id %>
+	<%= label_tag "name", "Name" %><br />
+	<%= text_field_tag "name", @court.name %><br /><br />
+	<%= label_tag "opened", "Geöffnet" %><br />
+	<% if @court.opened %>
+		<%= check_box_tag "opened", 1, :checked => true %><br />
+	<% else %>
+		<%= check_box_tag "opened", 1 %><br />
+	<% end %>
+	<%= submit_tag "Court bearbeiten" %>
+<% end %>
+<p>
+	<%= link_to "Alle Courts", court_index_path %> <%= link_to "Anzeiegn", court_path(@court.id) %> <%= link_to "Löschen", court_path(@court.id), method: :delete, data: { confirm: "Wirklich löschen?" } %>
+</p>

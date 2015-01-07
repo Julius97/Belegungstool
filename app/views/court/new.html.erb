@@ -1,0 +1,11 @@
+<h1>Court hinzufügen</h1>
+<%= form_tag court_index_path, method: :post do %>
+	<%= label_tag "name", "Name" %><br />
+	<%= text_field_tag "name" %><br /><br />
+	<%= label_tag "opened", "Geöffnet" %><br />
+	<%= check_box_tag "opened", 1, :checked => true %><br />
+	<%= submit_tag "Neuen Court anlegen" %>
+<% end %>
+<p>
+	<%= link_to "Alle Courts", court_index_path %>
+</p>

@@ -1,0 +1,22 @@
+<h1>Abonnement von <%= @abonnement.user.name %> vom <%= @abonnement.from_date.strftime("%d.%m.%Y") %> bis <%= @abonnement.to_date.strftime("%d.%m.%Y") %></h1>
+<table>
+	<tr>
+		<td><b>Inhaber</b></td>
+		<td><%= @abonnement.user.name %></td>
+	</tr>
+	<tr>
+		<td><b>Platz</b></td>
+		<td><%= @abonnement.court.name %></td>
+	</tr>
+	<tr>
+		<td><b>Laufzeit</b></td>
+		<td><%= @abonnement.from_date.strftime("%d.%m.%Y - ") + @abonnement.to_date.strftime("%d.%m.%Y") %></td>
+	</tr>
+	<tr>
+		<td><b>Spielzeit</b></td>
+		<td><%= @abonnement.get_playing_day_name(@abonnement.playing_day) + @abonnement.playing_time_starts.strftime(" %H:%M Uhr - ") + @abonnement.playing_time_ends.strftime("%H:%M Uhr") %></td>
+	</tr>
+</table>
+<p>
+	<%= link_to "Alle Abonnements", abonnement_index_path %> <%= link_to "Bearbeiten", edit_abonnement_path(@abonnement.id) if @abonnement.to_date >= DateTime.now %> <%= link_to "Löschen", abonnement_path(@abonnement.id), method: :delete, data: { confirm: "Wirklich löschen?" }  if @abonnement.to_date >= DateTime.now %>
+</p>

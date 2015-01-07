@@ -1,0 +1,9 @@
+<h1>Verein hinzufügen</h1>
+<%= form_tag club_index_path, method: :post do %>
+	<%= label_tag "name", "Name" %><br />
+	<%= text_field_tag "name" %><br /><br />
+	<%= submit_tag "Neuen Verein anlegen" %>
+<% end %>
+<p>
+	<%= link_to "Alle Vereine", club_index_path %>
+</p>

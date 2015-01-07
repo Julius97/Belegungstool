@@ -1,0 +1,46 @@
+<h1>Neues Abonnement anlegen</h1>
+<%= form_tag abonnement_index_path, method: :post do %>
+	<% if @current_user.admin_permissions %>
+		<%= label_tag "user_id", "Inhaber" %>
+		<%= select_tag "user_id", options_from_collection_for_select(User.all.order(:last_name,:first_name), "id", "name"), prompt: "Bitte auswählen" %><br /><br />
+	<% else %>
+		<table>
+			<tr>
+				<td>Inhaber&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td><%= @current_user.name %></td>
+			</tr>
+		</table>
+		<%= hidden_field_tag "user_id", @current_user.id %><br />
+	<% end %>
+	<%= label_tag "court_id", "Platz" %>
+	<%= select_tag "court_id", options_from_collection_for_select(Court.where(:opened => true).order(:name), "id", "name"), prompt: "Bitte auswählen" %><br /><br />
+	<fieldset>	
+		<legend>Laufzeit</legend>
+		<%= label_tag "at_day", "Vom" %>
+		<%= number_field_tag "at_day", Date.today.day, min:1,max:31,step:1 %>.<%= number_field_tag "at_month", Date.today.month, min:1,max:12,step:1 %>.<%= number_field_tag "at_year", Date.today.year, min:Date.today.year,max:3000,step:1 %>
+		<%= label_tag "to_day", "bis" %>
+		<%= number_field_tag "to_day", Date.today.day, min:1,max:31,step:1 %>.<%= number_field_tag "to_month", Date.today.month, min:1,max:12,step:1 %>.<%= number_field_tag "to_year", Date.today.year, min:Date.today.year,max:3000,step:1 %>
+		<br /><br />
+	</fieldset>
+	<fieldset>	
+		<legend>Spielzeit</legend>
+		<%= label_tag "at_wday", "Wochentag" %>
+		<select name="at_wday">
+			<option checked>Bitte auswählen</option>
+		<% @wday_array.each_with_index do |wday,i| %>
+			<option value="<%= i %>"><%= wday %></option>
+		<% end %>
+		</select>
+		<br /><br />
+		<%= label_tag "at_hour", "Zeit" %>
+		<%= number_field_tag "at_hour", Time.now.hour, min:0,max:23,step:1 %>:
+		<%= select_tag "at_min", "<option value='0' selected>00</option><option value='30'>30</option>".html_safe %> Uhr bis
+		<%= number_field_tag "to_hour", Time.now.hour, min:0,max:23,step:1 %>:
+		<%= select_tag "to_min", "<option value='0' selected>00</option><option value='30'>30</option>".html_safe %> Uhr<br />
+	</fieldset>
+	<br />
+	<%= submit_tag "Neues Abonnement anlegen" %>
+<% end %>
+<p>
+	<%= link_to "Alle Abonnements", abonnement_index_path %>
+</p>

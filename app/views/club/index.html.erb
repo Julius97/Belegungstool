@@ -1,0 +1,16 @@
+<h1>Vereine</h1>
+<p>
+	<%= link_to "Neuen Verein anlegen", new_club_path %>
+</p>
+<table>
+	<% @clubs.each do |club| %>
+		<tr>
+			<td>
+				<%= club.name %>
+			</td>
+			<td>
+				<%= link_to "Anzeigen", club_path(club.id) %> | <%= link_to "Bearbeiten", edit_club_path(club.id) %> | <%= link_to "Löschen", club_path(club.id), method: :delete, data: { confirm: "Wirklich löschen?" } %>
+			</td>
+		</tr>
+	<% end %>
+</table>

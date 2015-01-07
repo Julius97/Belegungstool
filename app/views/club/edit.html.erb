@@ -1,0 +1,10 @@
+<h1><%= @club.name %> bearbeiten</h1>
+<%= form_tag club_path, method: :put do %>
+	<%= hidden_field_tag "club_id", @club.id %>
+	<%= label_tag "name", "Name" %><br />
+	<%= text_field_tag "name", @club.name %><br /><br />
+	<%= submit_tag "Verein bearbeiten" %>
+<% end %>
+<p>
+	<%= link_to "Alle Vereine", club_index_path %> <%= link_to "Anzeiegn", club_path(@club.id) %> <%= link_to "Löschen", club_path(@club.id), method: :delete, data: { confirm: "Wirklich löschen?" } %>
+</p>

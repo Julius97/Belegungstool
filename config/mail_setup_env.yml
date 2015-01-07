@@ -1,0 +1,4 @@
+MAIL_SERVER: 'smtp.gmail.com'
+MAIL_DOMAIN: 'gmail.com'
+MAIL_USERNAME: "julius.rueckin@gmail.com"
+MAIL_PASSWORD: "julius16"

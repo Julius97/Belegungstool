@@ -1,0 +1,22 @@
+<h1><%= "Buchungs-Nr. " + @booking.id.to_s + " von " + @booking.user.name %></h1>
+<table>
+	<tr>
+		<td>Buchungs-Nr.</td>
+		<td><%= @booking.id %></td>
+	</tr>
+	<tr>
+		<td>Auftraggeber</td>
+		<td><%= @booking.user.name %></td>
+	</tr>
+	<tr>
+		<td>Platz</td>
+		<td><%= @booking.court.name %></td>
+	</tr>
+	<tr>
+		<td>Spielzeit</td>
+		<td><%= @booking.from_date.strftime("%d.%m.%Y - %H:%M Uhr bis ") + @booking.to_date.strftime("%H:%M Uhr") %></td>
+	</tr>
+</table>
+<p>
+	<%= link_to "Alle Buchungen", booking_index_path %> <%= link_to "Bearbeiten", edit_booking_path(@booking.id) if @booking.from_date >= DateTime.now %> <%= link_to "Löschen", booking_path(@booking.id), method: :delete, data: { confirm: "Wirklich löschen?" } if @booking.from_date >= DateTime.now %>
+</p>

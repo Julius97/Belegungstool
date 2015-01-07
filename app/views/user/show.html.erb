@@ -1,0 +1,26 @@
+<h1><%= @user.first_name + " " + @user.last_name %></h1>
+<table>
+	<tr>
+		<td><b>Vorname</b></td>
+		<td><%= @user.first_name %></td>
+	</tr>
+	<tr>
+		<td><b>Nachname</b></td>
+		<td><%= @user.last_name %></td>
+	</tr>
+	<tr>
+		<td><b>Mailadresse</b></td>
+		<td><%= @user.mail_address %></td>
+	</tr>
+	<tr>
+		<td><b>Verein</b></td>
+		<td><%= @user.club.name %></td>
+	</tr>
+	<tr>
+		<td><b>Admin</b></td>
+		<td><%= @user.admin_permissions ? "Ja" : "Nein" %></td>
+	</tr>
+</table>
+<p>
+	<%= link_to "Alle Benutzer", user_index_path %> <%= link_to "Bearbeiten", edit_user_path(@user.id) %> <%= link_to "Löschen", user_path(@user.id), method: :delete, data: { confirm: "Wirklich löschen?" } %>
+</p>

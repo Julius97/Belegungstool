@@ -1,0 +1,21 @@
+<h1>Registrierung</h1>
+<%= form_tag register_path, method: :post do %>
+	<%= label_tag "first_name", "Vorname" %><br />
+	<%= text_field_tag "first_name" %><br /><br />
+	<%= label_tag "last_name", "Nachname" %><br />
+	<%= text_field_tag "last_name" %><br /><br />
+	<%= label_tag "mail", "Mailadresse" %><br />
+	<%= text_field_tag "mail" %><br /><br />
+	<%= label_tag "repeated_mail", "Mailadresse wiederholen" %><br />
+	<%= text_field_tag "repeated_mail" %><br /><br />
+	<%= label_tag "password", "Passwort" %><br />
+	<%= password_field_tag "password" %><br /><br />
+	<%= label_tag "repeated_password", "Passwort wiederholen" %><br />
+	<%= password_field_tag "repeated_password" %><br /><br />
+	<%= label_tag "club_name", "Verein" %>
+	<%= select_tag "club_name", options_from_collection_for_select(Club.all.order(:name), "name", "name"), prompt: "Bitte auswählen" %><br /><br />
+	<%= submit_tag "Registrieren" %>
+<% end %>
+<p>
+	<%= link_to "Startseite", home_index_path %>
+</p>
