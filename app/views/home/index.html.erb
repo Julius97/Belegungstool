@@ -38,34 +38,38 @@
 			</tr>
 		</thead>
 		<% i = 0 %>
-		<% 24.times do %>
-			<% min = 0 %>
-			<% 2.times.with_index do |counter| %>
-				<tr>
-					<% if min == 0 %>
-						<td class="time_cell_style"><%= i.to_s + ":"+ min.to_s + "0 - " + i.to_s + ":" + (min+30).to_s  %></td>
-					<% else %>
-						<% if min == 60 %>
-							<% min = 0 %>
-						<% end %>
-						<td class="time_cell_style"><%= i.to_s + ":"+ min.to_s + " - " + (i+1).to_s + ":00"  %></td>
-					<% end %>
-					<% k = 0 %>
-					<% @courts.count.times do %>
-						<% if @bookings_sorted_by_hours[i][k] == "Frei" %>
-							<% if counter == 0 %>
-								<td class="free_cell_style_1"><%= @bookings_sorted_by_hours[i][k] %></td>
-							<% else %>
-								<td class="free_cell_style_2"><%= @bookings_sorted_by_hours[i][k] %></td>
-							<% end %>
-						<% else %>
-							<td class="booked_cell_style"><%= @bookings_sorted_by_hours[i][k] %></td>
-						<% end %>
-						<% k += 1 %>
-					<% end %>
-				</tr>
-				<% min += 30 %>
+		<% 48.times do %>
+			<% if i%2 == 0 %>
+				<% begin_min = 0 %>
+				<% finish_min = 30 %>
+				<% begin_hour = (i/2).to_i %>
+				<% finish_hour = (i/2).to_i %>
+			<% else %>
+				<% begin_min = 30 %>
+				<% finish_min = 0 %>
+				<% begin_hour = (i/2).to_i %>
+				<% finish_hour = (i/2).to_i + 1 %>
 			<% end %>
+			<tr>
+				<% if begin_min == 0 %>
+					<td class="time_cell_style"><%= begin_hour.to_s + ":"+ begin_min.to_s + "0 - " + finish_hour.to_s + ":" + finish_min.to_s  %></td>
+				<% elsif finish_min == 0 %>
+					<td class="time_cell_style"><%= begin_hour.to_s + ":"+ begin_min.to_s + " - " + finish_hour.to_s + ":" + finish_min.to_s + "0"  %></td>
+				<% end %>
+				<% k = 0 %>
+				<% @courts.count.times do %>
+					<% if @bookings_sorted_by_hours[i][k] == "Frei" %>
+						<% if i%2 == 0 %>
+							<td class="free_cell_style_1"><%= @bookings_sorted_by_hours[i][k] %></td>
+						<% else %>
+							<td class="free_cell_style_2"><%= @bookings_sorted_by_hours[i][k] %></td>
+						<% end %>
+					<% else %>
+						<td class="booked_cell_style"><%= @bookings_sorted_by_hours[i][k] %></td>
+					<% end %>
+					<% k += 1 %>
+				<% end %>
+			</tr>
 			<% i += 1 %>
 		<% end %>
 	</table>
