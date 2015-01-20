@@ -31,4 +31,8 @@ Rails.application.routes.draw do
 	get "forgot_password", to: "session#forgot_password", :as => "forgot_password"
 	post "forgot_password", to: "session#forgot_password"
 
+	# STATIC PAGES
+    static_pages = [:imprint, :privacy]
+    static_pages.each { |static_page| get static_page.to_s, to: "static#" + static_page.to_s, as: ("static_" + static_page.to_s).intern }
+
 end

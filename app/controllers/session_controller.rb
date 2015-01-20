@@ -22,26 +22,30 @@ class SessionController < ApplicationController
 	end
 
 	def register
-		if params[:first_name] && params[:last_name] && params[:mail] && params[:repeated_mail] && params[:password] && params[:repeated_password]
-			successful_registration = false
-			if !params[:first_name].blank? && !params[:last_name].blank? && !params[:mail].blank? && !params[:repeated_mail].blank? && !params[:password].blank? && !params[:repeated_password].blank?
-			    if !params[:club_name].blank?
-			    	club_id = Club.find_by_name(params[:club_name]).id
-			    else	
-			    	club_id = nil
-			    end
-			    if params[:mail] == params[:repeated_mail]
-			    	if params[:password] == params[:repeated_password]
-						User.create :password => params[:password], :first_name => params[:first_name], :last_name => params[:last_name], :admin_permissions => false, :club_id => club_id, :mail_address => params[:mail]
-						successful_registration = true
+		if !@current_user
+			if params[:first_name] && params[:last_name] && params[:mail] && params[:repeated_mail] && params[:password] && params[:repeated_password]
+				successful_registration = false
+				if !params[:first_name].blank? && !params[:last_name].blank? && !params[:mail].blank? && !params[:repeated_mail].blank? && !params[:password].blank? && !params[:repeated_password].blank?
+				    if !params[:club_name].blank?
+				    	club_id = Club.find_by_name(params[:club_name]).id
+				    else	
+				    	club_id = nil
+				    end
+				    if params[:mail] == params[:repeated_mail]
+				    	if params[:password] == params[:repeated_password]
+							User.create :password => params[:password], :first_name => params[:first_name], :last_name => params[:last_name], :admin_permissions => false, :club_id => club_id, :mail_address => params[:mail]
+							successful_registration = true
+						end
 					end
 				end
+				if successful_registration
+					redirect_to home_index_path
+				else
+					redirect_to register_path
+				end
 			end
-			if successful_registration
-				redirect_to home_index_path
-			else
-				redirect_to register_path
-			end
+		else
+			redirect_to home_index_path
 		end
 	end
 

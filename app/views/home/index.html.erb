@@ -40,7 +40,7 @@
 		<% i = 0 %>
 		<% 24.times do %>
 			<% min = 0 %>
-			<% 2.times do %>
+			<% 2.times.with_index do |counter| %>
 				<tr>
 					<% if min == 0 %>
 						<td class="time_cell_style"><%= i.to_s + ":"+ min.to_s + "0 - " + i.to_s + ":" + (min+30).to_s  %></td>
@@ -51,9 +51,9 @@
 						<td class="time_cell_style"><%= i.to_s + ":"+ min.to_s + " - " + (i+1).to_s + ":00"  %></td>
 					<% end %>
 					<% k = 0 %>
-					<% 3.times do %>
+					<% @courts.count.times do %>
 						<% if @bookings_sorted_by_hours[i][k] == "Frei" %>
-							<% if i%2 == 0 %>
+							<% if counter == 0 %>
 								<td class="free_cell_style_1"><%= @bookings_sorted_by_hours[i][k] %></td>
 							<% else %>
 								<td class="free_cell_style_2"><%= @bookings_sorted_by_hours[i][k] %></td>
