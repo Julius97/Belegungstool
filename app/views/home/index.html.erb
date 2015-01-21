@@ -53,19 +53,23 @@
 			<tr>
 				<% if begin_min == 0 %>
 					<td class="time_cell_style"><%= begin_hour.to_s + ":"+ begin_min.to_s + "0 - " + finish_hour.to_s + ":" + finish_min.to_s  %></td>
+					<% data_begin_value = @booking_date.strftime("%d.%m.%Y") + " " + begin_hour.to_s + ":"+ begin_min.to_s + "0" %>
+					<% data_end_value = @booking_date.strftime("%d.%m.%Y") + " " + finish_hour.to_s + ":"+ finish_min.to_s %>
 				<% elsif finish_min == 0 %>
 					<td class="time_cell_style"><%= begin_hour.to_s + ":"+ begin_min.to_s + " - " + finish_hour.to_s + ":" + finish_min.to_s + "0"  %></td>
+					<% data_begin_value = @booking_date.strftime("%d.%m.%Y") + " " + begin_hour.to_s + ":"+ begin_min.to_s %>
+					<% data_end_value = @booking_date.strftime("%d.%m.%Y") + " " + finish_hour.to_s + ":"+ finish_min.to_s + "0" %>
 				<% end %>
 				<% k = 0 %>
-				<% @courts.count.times do %>
+				<% @courts.each do |court| %>
 					<% if @bookings_sorted_by_hours[i][k] == "Frei" %>
 						<% if i%2 == 0 %>
-							<td class="free_cell_style_1"><%= @bookings_sorted_by_hours[i][k] %></td>
+							<td class="free_cell_style_1" data-court="<%= court.name %>" data-begin="<%= data_begin_value %>" data-end="<%= data_end_value %>"><%= @bookings_sorted_by_hours[i][k] %></td>
 						<% else %>
-							<td class="free_cell_style_2"><%= @bookings_sorted_by_hours[i][k] %></td>
+							<td class="free_cell_style_2" data-court="<%= court.name %>" data-begin="<%= data_begin_value %>" data-end="<%= data_end_value %>"><%= @bookings_sorted_by_hours[i][k] %></td>
 						<% end %>
 					<% else %>
-						<td class="booked_cell_style"><%= @bookings_sorted_by_hours[i][k] %></td>
+						<td class="booked_cell_style" data-court="<%= court.name %>" data-begin="<%= data_begin_value %>" data-end="<%= data_end_value %>"><%= @bookings_sorted_by_hours[i][k] %></td>
 					<% end %>
 					<% k += 1 %>
 				<% end %>

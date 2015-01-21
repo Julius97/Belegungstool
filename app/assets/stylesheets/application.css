@@ -46,12 +46,15 @@ table td:first-child, table th:first-child{
 }
 .availability_plan .free_cell_style_1{
 	background: #00688B;
+	cursor: pointer;
 }
 .availability_plan .free_cell_style_2{
 	background: #33A1C9;
+	cursor: pointer;
 }
 .availability_plan .booked_cell_style{
 	background: #837E7C;
+	cursor: pointer;
 }
 .availability_plan td,.availability_plan th{
 	width: 30%;
