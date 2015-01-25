@@ -22,6 +22,9 @@ Rails.application.routes.draw do
 	#BOOKING ROUTES
 	resources :booking
 
+	#CONTACT ROUTE
+	resources :contact
+
 	#SESSION ROUTES
 	resources :session
 	post "login", to: "session#create", :as => "login"

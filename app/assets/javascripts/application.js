@@ -12,7 +12,7 @@ $(document).ready(function(){
 				$(this).attr("data-preselected","1");
 			}
 			else{
-				$(this).css("background","blue");
+				$(this).css("background",$(this).attr("data-standard_cell_color"));
 				$(this).attr("data-preselected","0");
 			}
 		}

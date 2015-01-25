@@ -64,12 +64,12 @@
 				<% @courts.each do |court| %>
 					<% if @bookings_sorted_by_hours[i][k] == "Frei" %>
 						<% if i%2 == 0 %>
-							<td class="free_cell_style_1" data-preselected="0" data-bookable="1" data-court="<%= court.name %>" data-begin="<%= data_begin_value %>" data-end="<%= data_end_value %>"><%= @bookings_sorted_by_hours[i][k] %></td>
+							<td class="free_cell_style_1" data-standard_cell_color="#00688B" data-preselected="0" data-bookable="1" data-court="<%= court.name %>" data-begin="<%= data_begin_value %>" data-end="<%= data_end_value %>"><%= @bookings_sorted_by_hours[i][k] %></td>
 						<% else %>
-							<td class="free_cell_style_2" data-preselected="0" data-bookable="1" data-court="<%= court.name %>" data-begin="<%= data_begin_value %>" data-end="<%= data_end_value %>"><%= @bookings_sorted_by_hours[i][k] %></td>
+							<td class="free_cell_style_2" data-standard_cell_color="#33A1C9" data-preselected="0" data-bookable="1" data-court="<%= court.name %>" data-begin="<%= data_begin_value %>" data-end="<%= data_end_value %>"><%= @bookings_sorted_by_hours[i][k] %></td>
 						<% end %>
 					<% else %>
-						<td class="booked_cell_style" data-preselected="0" data-bookable="0" data-court="<%= court.name %>" data-begin="<%= data_begin_value %>" data-end="<%= data_end_value %>"><%= @bookings_sorted_by_hours[i][k] %></td>
+						<td class="booked_cell_style" data-standard_cell_color="#837E7C" data-preselected="0" data-bookable="0" data-court="<%= court.name %>" data-begin="<%= data_begin_value %>" data-end="<%= data_end_value %>"><%= @bookings_sorted_by_hours[i][k] %></td>
 					<% end %>
 					<% k += 1 %>
 				<% end %>
