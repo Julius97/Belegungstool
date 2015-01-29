@@ -20,4 +20,7 @@ $(document).ready(function(){
 			$(this).css("background","red");
 		}
 	});
+	$("#book_marked_cells_button").click(function(){
+		alert("Test");
+	});
 });

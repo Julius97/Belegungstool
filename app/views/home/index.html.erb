@@ -24,6 +24,16 @@
 			<%= "Buchungs-Nr. " + booking.id.to_s + " - " + booking.user.name + " auf Platz " + booking.court.name + " von " + booking.from_date.strftime("%H:%M Uhr bis ") + booking.to_date.strftime("%H:%M Uhr") %><br />
 		<% end %>
 	</p>
+	<table>
+		<tr>
+			<td>
+				<b>Aktionen</b>
+			</td>
+			<td>
+				<button id="book_marked_cells_button">Markierte Buchen</button>
+			<td>
+		</tr>
+	</table>
 	<h3>Belegungsplan</h3>
 	<table cellspacing="1" class="availability_plan">
 		<thead>
