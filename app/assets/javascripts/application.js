@@ -21,6 +21,13 @@ $(document).ready(function(){
 		}
 	});
 	$("#book_marked_cells_button").click(function(){
-		alert("Test");
+		test_alert_string = "";
+		$(".availability_plan td[data-preselected='1']").each(function(i){
+			test_alert_string += $(this).attr("data-court") + " - " + $(this).attr("data-begin") + " Uhr bis " + $(this).attr("data-end") + " Uhr\n";
+		});
+		if(test_alert_string == ""){
+			test_alert_string = "Du musst Tabellenzellen anklicken, um diese für eine Buchung zu markieren!";
+		}
+		alert(test_alert_string);
 	});
 });
