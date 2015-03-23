@@ -61,6 +61,7 @@ class BookingController < ApplicationController
 				end
 			end
 		end
+
 		redirect_to booking_index_path
 	end
 
