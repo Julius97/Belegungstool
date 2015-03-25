@@ -17,8 +17,12 @@ $(document).ready(function(){
 				$(this).attr("data-preselected","1");
 			}
 			else{
-				$(this).css("background",$(this).attr("data-standard_cell_color"));
-				$(this).attr("data-preselected","0");
+				$(".availability_plan td[data-preselected='1']").each(function(i){
+					$(this).css("background", $(this).attr("data-standard_cell_color"));
+					$(this).attr("data-preselected","0");
+				});
+				$(this).css("background","#837E7C");
+				$(this).attr("data-preselected","1");
 			}
 		}
 		else{
