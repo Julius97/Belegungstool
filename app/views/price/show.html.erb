@@ -1,0 +1,18 @@
+<h1><%= "Preis für " + @price.lesson + " von " + @price.from_time.strftime("%H:%M Uhr") + " - " + @price.to_time.strftime("%H:%M Uhr") %></h1>
+<table>
+	<tr>
+		<td>Zeit</td>
+		<td><%= @price.from_time.strftime("%H:%M Uhr") + " - " + @price.to_time.strftime("%H:%M Uhr") %></td>
+	</tr>
+	<tr>
+		<td>Art der Stunde</td>
+		<td><%= @price.lesson %></td>
+	</tr>
+	<tr>
+		<td>Preis</td>
+		<td><%= number_with_precision @price.price, :precision => 2 %> €</td>
+	</tr>
+</table>
+<p>
+	<%= link_to "Preisliste", price_index_path %> <%= link_to "Bearbeiten", edit_price_path(@price.id) %> <%= link_to "Löschen", price_path(@price.id), method: :delete, data: { confirm: "Wirklich löschen?" } %>
+</p>

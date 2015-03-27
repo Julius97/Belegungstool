@@ -1,0 +1,32 @@
+<ul>
+	<li>
+		<a href="#"><%= raw("Preise &and;") %></a>
+		<div id="prices_popup">
+			<h3>Preise</h3>
+			<table>
+				<thead>
+					<tr>
+						<th>Zeit</th>
+						<th>Art</th>
+						<th>Preis</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% PriceList.all.each do |price| %>
+						<tr>
+							<td><%= price.from_time.strftime("%H:%M Uhr") + " - " + price.to_time.strftime("%H:%M Uhr") %></td>
+							<td><%= price.lesson %></td>
+							<td><%= number_with_precision price.price, :precision => 2 %> €</td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</li>
+	<% if !@current_user %>
+		<li><%= link_to "Registrieren", register_path %></li>
+	<% end %>
+	<li><%= link_to "Datenschutz", static_privacy_path %></li>
+	<li><%= link_to "Kontakt", contact_index_path %></li>
+	<li><%= link_to "Impressum", static_imprint_path %></li>
+</ul>

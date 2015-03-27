@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  price: 9.99
+  lesson: MyString
+  from_time: 2015-03-27 10:46:27
+  to_time: 2015-03-27 10:46:27
+
+two:
+  price: 9.99
+  lesson: MyString
+  from_time: 2015-03-27 10:46:27
+  to_time: 2015-03-27 10:46:27

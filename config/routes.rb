@@ -22,6 +22,9 @@ Rails.application.routes.draw do
 	#BOOKING ROUTES
 	resources :booking
 
+	#PRICE ROUTES
+	resources :price
+
 	#CONTACT ROUTE
 	resources :contact
 

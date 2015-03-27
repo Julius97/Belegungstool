@@ -1,0 +1,31 @@
+<h1>Preis für <%= @price.lesson %> von <%= @price.from_time.strftime("%H:%M Uhr") %> bis <%= @price.to_time.strftime("%H:%M Uhr") %> bearbeiten</h1>
+<%= form_tag price_path, method: :put do %>
+	<%= hidden_field_tag "price_id", @price.id %>
+	<fieldset>
+		<legend>Zeit</legend>
+		<%= number_field_tag "from_hour", @price.from_time.hour, min:0,max:23,step:1 %>:
+		<% if @price.from_time.min == 0%>
+			<%= select_tag "from_min", "<option value='0' selected>00</option><option value='30'>30</option>".html_safe %> Uhr bis
+		<% else %>
+			<%= select_tag "from_min", "<option value='0'>00</option><option value='30' selected>30</option>".html_safe %> Uhr bis
+		<% end %>
+		<%= number_field_tag "to_hour", @price.to_time.hour, min:0,max:23,step:1 %>:
+		<% if @price.to_time.min == 0%>
+			<%= select_tag "to_min", "<option value='0' selected>00</option><option value='30'>30</option>".html_safe %> Uhr
+		<% else %>
+			<%= select_tag "to_min", "<option value='0'>00</option><option value='30' selected>30</option>".html_safe %> Uhr
+		<% end %>
+		<br /><br />
+	</fieldset>
+	<br />
+	<%= label_tag "lesson", "Art der Stunde" %><br />
+	<%= text_field_tag "lesson", @price.lesson %><br /><br />
+
+	<%= label_tag "price", "Preis" %><br />
+	<%= number_field_tag "price", @price.price, min:0,step:0.1 %><br /><br />
+	
+	<%= submit_tag "Preis bearbeiten" %>
+<% end %>
+<p>
+	<%= link_to "Preisliste", booking_index_path %>
+</p>

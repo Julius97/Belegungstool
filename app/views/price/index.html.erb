@@ -1,0 +1,25 @@
+<h1>Preisliste</h1>
+<p>
+	<%= link_to "Neuen Preis anlegen", new_price_path %>
+</p>
+<table>
+	<thead>
+		<tr>
+			<th>Zeit</th>
+			<th>Art</th>
+			<th>Preis</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @prices.each do |price| %>
+			<tr>
+				<td><%= price.from_time.strftime("%H:%M Uhr") + " - " + price.to_time.strftime("%H:%M Uhr") %></td>
+				<td><%= price.lesson %></td>
+				<td><%= number_with_precision price.price, :precision => 2 %> €</td>
+				<td>
+					<%= link_to "Anzeigen", price_path(price.id) %> | <%= link_to "Bearbeiten", edit_price_path(price.id) %> | <%= link_to "Löschen", price_path(price.id), method: :delete, data: { confirm: "Wirklich löschen?" } %>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

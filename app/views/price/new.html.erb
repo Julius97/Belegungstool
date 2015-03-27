@@ -1,0 +1,21 @@
+<h1>Neuen Preis anlegen</h1>
+<%= form_tag price_index_path, method: :post do %>
+	<fieldset>
+		<legend>Zeit</legend>
+		<%= number_field_tag "from_hour", Time.now.hour, min:0,max:23,step:1 %>:
+		<%= select_tag "from_min", "<option value='0' selected>00</option><option value='30'>30</option>".html_safe %> Uhr bis
+		<%= number_field_tag "to_hour", Time.now.hour, min:0,max:23,step:1 %>:
+		<%= select_tag "to_min", "<option value='0' selected>00</option><option value='30'>30</option>".html_safe %> Uhr<br /><br />
+	</fieldset>
+	<br />
+	<%= label_tag "lesson", "Art der Stunde" %><br />
+	<%= text_field_tag "lesson" %><br /><br />
+
+	<%= label_tag "price", "Preis" %><br />
+	<%= number_field_tag "price", 0, min:0,step:0.1 %><br /><br />
+	
+	<%= submit_tag "Neuen Preis anlegen" %>
+<% end %>
+<p>
+	<%= link_to "Preisliste", booking_index_path %>
+</p>
