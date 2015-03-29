@@ -1,0 +1,22 @@
+<h1>Neue Sundenkarte anlegen</h1>
+<%= form_tag lesson_card_index_path, method: :post do %>
+	<% if @current_user.admin_permissions %>
+		<%= label_tag "user_id", "Besitzer" %>
+		<%= select_tag "user_id", options_from_collection_for_select(User.all.order(:last_name,:first_name), "id", "name"), prompt: "Bitte auswählen" %><br /><br />
+	<% else %>
+		<table>
+			<tr>
+				<td>Besitzer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td><%= @current_user.name %></td>
+			</tr>
+		</table>
+		<%= hidden_field_tag "user_id", @current_user.id %><br />
+	<% end %>
+	<%= label_tag "initially", "Anzahl der Stunden" %><br />
+	<%= number_field_tag "initially", 10, min:1,step:1 %><br /><br />
+	
+	<%= submit_tag "Neue Stundenkarte anlegen" %>
+<% end %>
+<p>
+	<%= link_to "Alle Stundenkarten", lesson_card_index_path %>
+</p>

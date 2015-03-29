@@ -1,0 +1,56 @@
+<h1>Stundenkarten</h1>
+<p>
+	<%= link_to "Neue Stundenkarte anlegen", new_lesson_card_path %>
+</p>
+<table>
+	<thead>
+		<tr>
+			<th>Besitzer</th>
+			<th>Anzahl der Stunden</th>
+			<th>Verbleibende Stunden</th>
+			<th>Erworben am</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @actual_lesson_cards.each do |lesson_card| %>
+			<tr>
+				<td><%= lesson_card.user.name %></td>
+				<td><%= lesson_card.initially %> h</td>
+				<td><%= number_with_precision lesson_card.remaining, :precision => 1 %> h</td>
+				<td><%= lesson_card.created_at.strftime("%d.%m.%Y") %></td>
+				<td>
+					<%= link_to "Anzeigen", lesson_card_path(lesson_card.id) %> | <%= link_to "Bearbeiten", edit_lesson_card_path(lesson_card.id) %> | <%= link_to "Löschen", lesson_card_path(lesson_card.id), method: :delete, data: { confirm: "Wirklich löschen?" } %>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<% if @current_user.admin_permissions %>
+	<h2>Archivierte Stundenkarten</h2>
+	<table>
+	<thead>
+		<tr>
+			<th>Besitzer</th>
+			<th>Anzahl der Stunden</th>
+			<th>Verbleibende Stunden</th>
+			<th>Erworben am</th>
+			<th>Abgelaufen am</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @archived_lesson_cards.each do |lesson_card| %>
+			<tr>
+				<td><%= lesson_card.user.name %></td>
+				<td><%= lesson_card.initially %> h</td>
+				<td><%= number_with_precision lesson_card.remaining, :precision => 1 %> h</td>
+				<td><%= lesson_card.created_at.strftime("%d.%m.%Y") %></td>
+				<td><%= lesson_card.updated_at.strftime("%d.%m.%Y") %></td>
+				<td>
+					<%= link_to "Anzeigen", lesson_card_path(lesson_card.id) %>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+<% end %>

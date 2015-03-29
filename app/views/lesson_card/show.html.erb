@@ -1,0 +1,25 @@
+<h1>Stundenkarte von <%= @lesson_card.user.name %> über <%= @lesson_card.initially %> Stunden vom <%= @lesson_card.created_at.strftime("%d.%m.%Y") %></h1>
+<table>
+	<tr>
+		<td><b>Besitzer</b></td>
+		<td><%= @lesson_card.user.name %></td>
+	</tr>
+	<tr>
+		<td><b>Anzahl der Stunden</b></td>
+		<td><%= @lesson_card.initially %> h</td>
+	</tr>
+	<tr>
+		<td><b>Verbleibende Stunden</b></td>
+		<td><%= number_with_precision @lesson_card.remaining, :precision => 1 %> h</td>
+	</tr>
+	<tr>
+		<td><b>Erworben am</b></td>
+		<td><%= @lesson_card.created_at.strftime("%d.%m.%Y") %></td>
+	</tr>
+</table>
+<p>
+	<%= link_to "Alle Stundenkarte", lesson_card_index_path %> 
+	<% if @lesson_card.remaining > 0 %>
+		<%= link_to "Bearbeiten", edit_lesson_card_path(@lesson_card.id) %> <%= link_to "Löschen", lesson_card_path(@lesson_card.id), method: :delete, data: { confirm: "Wirklich löschen?" } %>
+	<% end %>
+</p>

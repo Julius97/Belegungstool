@@ -1,0 +1,2 @@
+module LessonCardHelper
+end

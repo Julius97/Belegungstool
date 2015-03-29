@@ -25,6 +25,9 @@ Rails.application.routes.draw do
 	#PRICE ROUTES
 	resources :price
 
+	#LESSON CARD ROUTES
+	resources :lesson_card
+
 	#CONTACT ROUTE
 	resources :contact
 
