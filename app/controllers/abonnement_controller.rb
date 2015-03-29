@@ -52,8 +52,8 @@ class AbonnementController < ApplicationController
 		if !params[:user_id].blank? && !params[:court_id].blank? && !params[:at_day].blank? && !params[:at_month].blank? && !params[:at_year].blank? && !params[:to_day].blank? && !params[:to_month].blank? && !params[:to_year].blank? && !params[:at_wday].blank? && !params[:at_hour].blank? && !params[:at_min].blank? && !params[:to_hour].blank? && !params[:to_min].blank?  
 			from_date = Date.new(params[:at_year].to_i,params[:at_month].to_i,params[:at_day].to_i)
 			to_date = Date.new(params[:to_year].to_i,params[:to_month].to_i,params[:to_day].to_i)
-			playing_time_starts = DateTime.new(params[:at_year].to_i,params[:at_month].to_i,params[:at_day].to_i,params[:at_hour].to_i,params[:at_min].to_i,0,"+1")
-			playing_time_ends = DateTime.new(params[:to_year].to_i,params[:to_month].to_i,params[:to_day].to_i,params[:to_hour].to_i,params[:to_min].to_i,0,"+1")
+			playing_time_starts = DateTime.new(params[:at_year].to_i,params[:at_month].to_i,params[:at_day].to_i,params[:at_hour].to_i,params[:at_min].to_i,0)
+			playing_time_ends = DateTime.new(params[:to_year].to_i,params[:to_month].to_i,params[:to_day].to_i,params[:to_hour].to_i,params[:to_min].to_i,0)
 			if running_time_is_valid(from_date,to_date)
 				if playing_time_is_valid(playing_time_starts.to_datetime,playing_time_ends.to_datetime)
 					if abonnement_is_available(from_date,to_date,playing_time_starts,playing_time_ends,params[:at_wday].to_i,params[:court_id].to_i)
@@ -104,8 +104,8 @@ class AbonnementController < ApplicationController
 			if !params[:abonnement_id].blank? && !params[:user_id].blank? && !params[:court_id].blank? && !params[:at_day].blank? && !params[:at_month].blank? && !params[:at_year].blank? && !params[:to_day].blank? && !params[:to_month].blank? && !params[:to_year].blank? && !params[:at_wday].blank? && !params[:at_hour].blank? && !params[:at_min].blank? && !params[:to_hour].blank? && !params[:to_min].blank?  
 				from_date = Date.new(params[:at_year].to_i,params[:at_month].to_i,params[:at_day].to_i)
 				to_date = Date.new(params[:to_year].to_i,params[:to_month].to_i,params[:to_day].to_i)
-				playing_time_starts = DateTime.new(params[:at_year].to_i,params[:at_month].to_i,params[:at_day].to_i,params[:at_hour].to_i,params[:at_min].to_i,0,"+1")
-				playing_time_ends = DateTime.new(params[:to_year].to_i,params[:to_month].to_i,params[:to_day].to_i,params[:to_hour].to_i,params[:to_min].to_i,0,"+1")
+				playing_time_starts = DateTime.new(params[:at_year].to_i,params[:at_month].to_i,params[:at_day].to_i,params[:at_hour].to_i,params[:at_min].to_i,0)
+				playing_time_ends = DateTime.new(params[:to_year].to_i,params[:to_month].to_i,params[:to_day].to_i,params[:to_hour].to_i,params[:to_min].to_i,0)
 				if running_time_is_valid(from_date,to_date)
 					if playing_time_is_valid(playing_time_starts,playing_time_ends)
 						if abonnement_is_available(from_date,to_date,playing_time_starts,playing_time_ends,params[:at_wday].to_i,params[:court_id].to_i)

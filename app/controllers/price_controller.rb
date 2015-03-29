@@ -12,8 +12,8 @@ class PriceController < ApplicationController
 
 	def create
 		if !params[:price].blank? && !params[:lesson].blank? && !params[:from_hour].blank? && !params[:from_min].blank? && !params[:to_hour].blank? && !params[:to_min].blank?
-			from_time = DateTime.new(2015,01,01,params[:from_hour].to_i,params[:from_min].to_i,00,"+1")
-			to_time = DateTime.new(2015,01,01,params[:to_hour].to_i,params[:to_min].to_i,00,"+1")
+			from_time = DateTime.new(2015,01,01,params[:from_hour].to_i,params[:from_min].to_i,00)
+			to_time = DateTime.new(2015,01,01,params[:to_hour].to_i,params[:to_min].to_i,00)
 			if from_time < to_time
 				if params[:price].to_f > 0
 					PriceList.create :price => params[:price].to_f, :lesson => params[:lesson], :from_time => from_time, :to_time => to_time
@@ -45,8 +45,8 @@ class PriceController < ApplicationController
 
 	def update
 		if !params[:price_id].blank? && !params[:price].blank? && !params[:lesson].blank? && !params[:from_hour].blank? && !params[:from_min].blank? && !params[:to_hour].blank? && !params[:to_min].blank?
-			from_time = DateTime.new(2015,01,01,params[:from_hour].to_i,params[:from_min].to_i,00,"+1")
-			to_time = DateTime.new(2015,01,01,params[:to_hour].to_i,params[:to_min].to_i,00,"+1")
+			from_time = DateTime.new(2015,01,01,params[:from_hour].to_i,params[:from_min].to_i,00)
+			to_time = DateTime.new(2015,01,01,params[:to_hour].to_i,params[:to_min].to_i,00)
 			if PriceList.find_by_id(params[:price_id])
 				if from_time < to_time
 					if params[:price].to_f > 0

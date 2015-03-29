@@ -33,8 +33,12 @@ class SessionController < ApplicationController
 				    end
 				    if params[:mail] == params[:repeated_mail]
 				    	if params[:password] == params[:repeated_password]
-							User.create :password => params[:password], :first_name => params[:first_name], :last_name => params[:last_name], :admin_permissions => false, :club_id => club_id, :mail_address => params[:mail]
-							successful_registration = true
+				    		if !User.find_by_mail_address params[:mail]
+				    			if User.where(:first_name => params[:first_name], :last_name => params[:last_name]).count == 0
+									User.create :password => params[:password], :first_name => params[:first_name], :last_name => params[:last_name], :admin_permissions => false, :club_id => club_id, :mail_address => params[:mail]
+									successful_registration = true
+								end
+							end
 						end
 					end
 				end

@@ -51,8 +51,8 @@ class BookingController < ApplicationController
 		if !params[:user_id].blank? && !params[:court_id].blank? && !params[:at_day].blank? && !params[:at_month].blank? && !params[:at_year].blank? && !params[:at_hour].blank? && !params[:at_min].blank? && !params[:to_hour].blank? && !params[:to_min].blank?
 			court_id = Court.find_by_id(params[:court_id]).id
 			user_id = User.find_by_id(params[:user_id]).id
-			from_date = DateTime.new(params[:at_year].to_i,params[:at_month].to_i,params[:at_day].to_i,params[:at_hour].to_i,params[:at_min].to_i,0,"+1")
-			to_date = DateTime.new(params[:at_year].to_i,params[:at_month].to_i,params[:at_day].to_i,params[:to_hour].to_i,params[:to_min].to_i,0,"+1")
+			from_date = DateTime.new(params[:at_year].to_i,params[:at_month].to_i,params[:at_day].to_i,params[:at_hour].to_i,params[:at_min].to_i,0)
+			to_date = DateTime.new(params[:at_year].to_i,params[:at_month].to_i,params[:at_day].to_i,params[:to_hour].to_i,params[:to_min].to_i,0)
 			if playing_time_is_valid(from_date,to_date)
 				if playing_time_is_available_in_comparison_to_bookings(court_id,from_date,to_date)
 					if playing_time_is_available_in_comparison_to_abonnements(from_date.to_date,to_date.to_date,from_date,to_date,from_date.wday,court_id)
@@ -101,8 +101,8 @@ class BookingController < ApplicationController
 			if !params[:booking_id].blank? && !params[:user_id].blank? && !params[:user_id].blank? && !params[:at_day].blank? && !params[:at_month].blank? && !params[:at_year].blank? && !params[:at_hour].blank? && !params[:at_min].blank? && !params[:to_hour].blank? && !params[:to_min].blank?
 				court_id = Court.find_by_id(params[:court_id]).id
 				user_id = User.find_by_id(params[:user_id]).id
-				from_date = DateTime.new(params[:at_year].to_i,params[:at_month].to_i,params[:at_day].to_i,params[:at_hour].to_i,params[:at_min].to_i,0,"+1")
-				to_date = DateTime.new(params[:at_year].to_i,params[:at_month].to_i,params[:at_day].to_i,params[:to_hour].to_i,params[:to_min].to_i,0,"+1")
+				from_date = DateTime.new(params[:at_year].to_i,params[:at_month].to_i,params[:at_day].to_i,params[:at_hour].to_i,params[:at_min].to_i,0)
+				to_date = DateTime.new(params[:at_year].to_i,params[:at_month].to_i,params[:at_day].to_i,params[:to_hour].to_i,params[:to_min].to_i,0)
 				if playing_time_is_valid(from_date,to_date)
 					if playing_time_is_available_in_comparison_to_bookings(court_id,from_date,to_date)
 						if playing_time_is_available_in_comparison_to_abonnements(from_date.to_date,to_date.to_date,from_date,to_date,from_date.wday,court_id)

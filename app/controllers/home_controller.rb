@@ -59,8 +59,8 @@ class HomeController < ApplicationController
 			if finish_hour <= 23
 				@bookings.each do |booking|
 					court_index = @courts.index booking.court
-					begin_datetime = DateTime.new(@booking_date.year,@booking_date.month,@booking_date.day,begin_hour.to_i,begin_minutes.to_i,0,"+1")
-					finish_datetime = DateTime.new(@booking_date.year,@booking_date.month,@booking_date.day,finish_hour.to_i,finish_minutes.to_i,0,"+1")
+					begin_datetime = DateTime.new(@booking_date.year,@booking_date.month,@booking_date.day,begin_hour.to_i,begin_minutes.to_i,0)
+					finish_datetime = DateTime.new(@booking_date.year,@booking_date.month,@booking_date.day,finish_hour.to_i,finish_minutes.to_i,0)
 					if  begin_datetime < booking.to_date &&  finish_datetime > booking.from_date
 		    			@bookings_sorted_by_hours[i][court_index] = booking.user.name
 		    		end
@@ -91,8 +91,8 @@ class HomeController < ApplicationController
 					court_index = @courts.index abonnement.court
 					if Date.new(@booking_date.year,@booking_date.month,@booking_date.day).wday.to_i == abonnement.playing_day
 			    		if (abonnement.from_date..abonnement.to_date).include?(Date.new(@booking_date.year,@booking_date.month,@booking_date.day))
-			    			playing_time_starts = DateTime.new(@booking_date.year,@booking_date.month,@booking_date.day,begin_hour.to_i,begin_minutes.to_i,0,"+1").strftime("%H:%M:0")
-							playing_time_ends = DateTime.new(@booking_date.year,@booking_date.month,@booking_date.day,finish_hour.to_i,finish_minutes.to_i,0,"+1").strftime("%H:%M:0")
+			    			playing_time_starts = DateTime.new(@booking_date.year,@booking_date.month,@booking_date.day,begin_hour.to_i,begin_minutes.to_i,0).strftime("%H:%M:0")
+							playing_time_ends = DateTime.new(@booking_date.year,@booking_date.month,@booking_date.day,finish_hour.to_i,finish_minutes.to_i,0).strftime("%H:%M:0")
 			    			if playing_time_starts < abonnement.playing_time_ends.strftime("%H:%M:0") && playing_time_ends > abonnement.playing_time_starts.strftime("%H:%M:0")
 			    				@bookings_sorted_by_hours[i][court_index] = "Abo: " + abonnement.user.name
 			    			end
