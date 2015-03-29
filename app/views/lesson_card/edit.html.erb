@@ -1,0 +1,25 @@
+<h1>Stundenkarte von <%= @lesson_card.user.name %> über <%= @lesson_card.initially %> Stunden vom <%= @lesson_card.created_at.strftime("%d.%m.%Y") + " bearbeiten" %></h1>
+<%= form_tag lesson_card_path, method: :put do %>
+	<%= hidden_field_tag "lesson_card_id", @lesson_card.id %>
+	<% if @current_user.admin_permissions %>
+		<%= label_tag "user_id", "Besitzer" %>
+		<%= select_tag "user_id", options_from_collection_for_select(User.all.order(:last_name,:first_name), "id", "name", @lesson_card.user.id) %><br /><br />
+	<% else %>
+		<table>
+			<tr>
+				<td>Besitzer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td><%= @current_user.name %></td>
+			</tr>
+		</table>
+		<%= hidden_field_tag "user_id", @current_user.id %><br />
+	<% end %>
+	<%= label_tag "initially", "Anzahl der Stunden" %><br />
+	<%= number_field_tag "initially", @lesson_card.initially, min:1,step:1 %><br /><br />
+	<%= label_tag "remaining", "Verbleibende Stunden" %><br />
+	<%= number_field_tag "remaining", @lesson_card.remaining, min:1,step:1 %><br /><br />
+	
+	<%= submit_tag "Stundenkarte bearbeiten" %>
+<% end %>
+<p>
+	<%= link_to "Alle Stundenkarten", lesson_card_index_path %>
+</p>

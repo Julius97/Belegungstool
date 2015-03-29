@@ -75,7 +75,27 @@ class LessonCardController < ApplicationController
 	end
 
 	def update
-
+		allowed_to_update = false
+		if !params[:user_id].blank? && !params[:initially].blank? && !params[:lesson_card_id].blank?
+			if params[:initially].to_i > 0
+				if !@current_user.admin_permissions
+					if params[:user_id].to_i == @current_user.id
+						if params[:initially].to_i >= params[:remaining].to_i
+							allowed_to_update = true
+						end
+					end
+				else
+					if params[:initially].to_i >= params[:remaining].to_i
+						allowed_to_update = true
+					end
+				end
+				
+				if allowed_to_update
+					LessonCard.find_by_id(params[:lesson_card_id]).update_attributes :user_id => params[:user_id].to_i, :initially => params[:initially].to_i, :remaining => params[:remaining].to_f
+				end
+			end 
+		end
+		redirect_to lesson_card_path params[:id]
 	end
 
 	def destroy
