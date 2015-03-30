@@ -56,6 +56,14 @@ class BookingController < ApplicationController
 			if playing_time_is_valid(from_date,to_date)
 				if playing_time_is_available_in_comparison_to_bookings(court_id,from_date,to_date)
 					if playing_time_is_available_in_comparison_to_abonnements(from_date.to_date,to_date.to_date,from_date,to_date,from_date.wday,court_id)
+						if params[:use_lesson_card_to_pay].present?
+							user = User.find_by_id params[:user_id]
+							playing_duration = ((to_date.to_time - from_date.to_time).abs)/3600
+							if user.lesson_cards.where("remaining >= ?",playing_duration).count > 0
+								remaining = user.lesson_cards.first.remaining - playing_duration
+								user.lesson_cards.first.update_attributes :remaining => remaining
+							end
+						end
 						Booking.create :user_id => user_id, :court_id => court_id, :from_date => from_date, :to_date => to_date
 					end
 				end

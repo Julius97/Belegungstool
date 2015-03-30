@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
 
 	has_many :abonnements, :dependent => :destroy
 	has_many :bookings, :dependent => :destroy
+	has_many :lesson_cards, :dependent => :destroy
 	belongs_to :club
 
 	validates :first_name, :presence => true

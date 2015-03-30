@@ -24,7 +24,15 @@
 		<%= number_field_tag "to_hour", Time.now.hour, min:0,max:23,step:1 %>:
 		<%= select_tag "to_min", "<option value='0' selected>00</option><option value='30'>30</option>".html_safe %> Uhr<br /><br />
 	</fieldset>
-	<br />
+	<br >
+	<% if !@current_user.admin_permissions %>
+		<% if @current_user.lesson_cards.where("remaining > 0").count > 0 %>
+			<b><%= "Sie haben eine Stundenkarte mit " + @current_user.lesson_cards.first.remaining.to_s + " verbleibenden Stunden" %></b><br /> 
+			<%= label_tag "use_lesson_card_to_pay", "Von Stundenkarte abbuchen" %>
+			<%= check_box_tag "use_lesson_card_to_pay", true, false %>
+		<% end %>
+	<% end %>
+	<br /><br />
 	<%= submit_tag "Neue Buchung anlegen" %>
 <% end %>
 <p>
