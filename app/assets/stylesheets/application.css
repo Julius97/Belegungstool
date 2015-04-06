@@ -94,6 +94,31 @@ table td:first-child, table th:first-child{
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
 	box-shadow: 0px 0px 2px 2px gray;
 }
+#menue #mobile_menue_button{
+	float: right;
+	height: 40px;
+	width: 40px;
+	margin-top: 10px;
+	margin-right: 20px;
+	display: none;
+	cursor: pointer;
+}
+#menue #mobile_menue_button ul{
+	padding: 0;
+	margin: 0;
+	display: block;
+	width: 100%;
+	height: 40px;
+}
+#menue #mobile_menue_button ul li{
+	list-style: none;
+	width: 100%;
+	height: 5px;
+	padding: 0;
+	margin: 0;
+	margin-bottom: 6px;
+	background: white;
+}
 #menue ul{
 	padding: 0;
 	margin: 0;
@@ -258,6 +283,46 @@ table td:first-child, table th:first-child{
 #menue ul li #login_popup:hover{
 	display: block;
 }
+#menue #mobile_menue{
+	position: fixed;
+	top: 50px;
+	right: 0;
+	display: none;
+	margin: 0;
+	padding: 0;
+}
+#menue #mobile_menue li{
+	list-style: none;
+	float: none;
+	border: none;
+	background: #0e0e0e; 
+	width: 220px;
+	border-bottom: 1px solid #2E2E2E;
+}
+#menue #mobile_menue li a{
+	text-align: left;
+	padding-left: 20px;
+}
+#menue #mobile_menue li:hover{
+	background: #2E2E2E;
+}
+#menue #mobile_menue li:last-child{
+	border-radius: 0px;
+}
+#menue #mobile_menue li ul{
+	box-shadow: none;
+}
+#menue #mobile_menue li ul li{
+	background: #2E2E2E; 
+	border-top: 1px solid #0e0e0e;
+}
+#menue #mobile_menue li ul li:hover{
+	background: #0e0e0e; 
+}
+#menue #mobile_menue li ul li a{
+	text-align: left;
+	padding-left: 60px;
+}
 #footer {
 	z-index: 2;
 	width: 100%;
@@ -321,4 +386,13 @@ table td:first-child, table th:first-child{
 }
 #footer ul li:hover #prices_popup{
 	display: block;
+}
+
+@media only screen and (max-width: 1130px){
+	#menue #mobile_menue_button{
+		display: block;
+	}
+	#menue ul{
+		display: none;
+	}
 }

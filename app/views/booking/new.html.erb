@@ -27,7 +27,7 @@
 	<br >
 	<% if !@current_user.admin_permissions %>
 		<% if @current_user.lesson_cards.where("remaining > 0").count > 0 %>
-			<b><%= "Sie haben eine Stundenkarte mit " + @current_user.lesson_cards.first.remaining.to_s + " verbleibenden Stunden" %></b><br /> 
+			<b><%= "Sie haben eine Stundenkarte mit " + @current_user.lesson_cards.where("remaining > 0").first.remaining.to_s + " verbleibenden Stunden" %></b><br /> 
 			<%= label_tag "use_lesson_card_to_pay", "Von Stundenkarte abbuchen" %>
 			<%= check_box_tag "use_lesson_card_to_pay", true, false %>
 		<% end %>

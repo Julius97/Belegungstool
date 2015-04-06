@@ -1,3 +1,37 @@
+<div id="mobile_menue_button">
+	<ul>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</div>
+<ul id="mobile_menue">
+	<li><%= link_to "Belegungsplan", home_index_path %></li>
+	<li><%= link_to raw("Buchungen"), booking_index_path %></li>
+	<li><%= link_to raw("Abonnements"), abonnement_index_path %></li>
+	<li><%= link_to raw("Stundenkarten"), lesson_card_index_path %></li>
+	<% if @current_user.admin_permissions %>
+		<li>
+			<%= link_to raw("Verwaltung &or;"), booking_index_path %>
+			<ul>
+				<li><%= link_to "Plätze", court_index_path %></li>
+				<li><%= link_to "Vereine", club_index_path %></li>
+				<li><%= link_to "Benutzer", user_index_path %></li>
+				<li><%= link_to "Preise", price_index_path %></li>
+			</ul>
+		</li>
+	<% end %>
+	<% if @current_user %>
+		<li>
+			<%= link_to raw("Account &or;"), edit_user_path(@current_user.id) %>
+			<ul>
+				<li><%= link_to "Profil bearbeiten", edit_user_path(@current_user.id) %></li>
+				<li><%= link_to "Paswort ändern", change_password_path %></li>
+				<li><%= link_to "Logout", logout_path %></li>
+			</ul>
+		</li>
+	<% end %>
+</ul>
 <ul>
 	<li><%= link_to "Belegungsplan", home_index_path %></li>
 	<% if @current_user %>

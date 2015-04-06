@@ -74,4 +74,7 @@ $(document).ready(function(){
 		}
 		if(alert_string != "") alert(alert_string);
 	});
+	$("#menue #mobile_menue_button").stop().click(function(){
+		$("#menue #mobile_menue").stop().slideToggle(500);
+	});
 });
